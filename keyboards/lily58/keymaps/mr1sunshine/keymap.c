@@ -66,7 +66,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |RU_YO|KC_TILDE|      |      |      |KC_QUES|-------|    |-------|      |   _  |   +  |   {  |   }  |   |  |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |BackSP| RGUI |
- *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
 [_LOWER] = LAYOUT( \
@@ -237,6 +236,10 @@ void oled_task_user(void) {
     oled_write_ln("", false);
     oled_write_ln("", false);
     render_mod_status();
+    oled_write_ln("", false);
+    oled_write_ln("", false);
+    oled_write_ln("", false);
+    oled_write_ln(read_keylog(), false);
   } else {
     oled_write(read_logo(), false);
   }

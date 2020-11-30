@@ -2,7 +2,7 @@
 #include "action.h"
 #include "lily58.h"
 
-char keylog_str[24] = {};
+char keylog_str[2] = {};
 char keylogs_str[21] = {};
 int keylogs_str_idx = 0;
 
@@ -21,9 +21,7 @@ void set_keylog(uint16_t keycode, keyrecord_t *record) {
   }
 
   // update keylog
-  snprintf(keylog_str, sizeof(keylog_str), "%dx%d, k%2d : %c",
-           record->event.key.row, record->event.key.col,
-           keycode, name);
+  snprintf(keylog_str, sizeof(keylog_str), "%c",name);
 
   // update keylogs
   if (keylogs_str_idx == sizeof(keylogs_str) - 1) {
