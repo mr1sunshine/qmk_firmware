@@ -1,9 +1,12 @@
 #include QMK_KEYBOARD_H
 
+#include "keymap_russian.h"
+
 #ifdef PROTOCOL_LUFA
   #include "lufa.h"
   #include "split_util.h"
 #endif
+
 #ifdef SSD1306OLED
   #include "ssd1306.h"
 #endif
@@ -54,32 +57,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |KC_CAPS|      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |RU_YO|      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |                    |  F7  |  F8  |  F9  | F10  | F11  | F12  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |   `  |   !  |   @  |   #  |   $  |   %  |-------.    ,-------|   ^  |   &  |   *  |   (  |   )  |   -  |
+ * |LShift|   !  |   @  |   #  |   $  |   %  |-------.    ,-------|   ^  |   &  |   *  |   (  |   )  |   -  |
  * |------+------+------+------+------+------|   [   |    |    ]  |------+------+------+------+------+------|
- * |      |      |      |      |      |      |-------|    |-------|      |   _  |   +  |   {  |   }  |   |  |
+ * |RU_YO|KC_TILDE|      |      |      |KC_QUES|-------|    |-------|      |   _  |   +  |   {  |   }  |   |  |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |BackSP| RGUI |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
 [_LOWER] = LAYOUT( \
-  _______, _______, _______, _______, _______, _______,                   _______, _______, _______,_______, _______, _______,\
+  RU_YO, _______, _______, _______, _______, _______,                   _______, _______, _______,_______, _______, _______,\
   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                     KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12, \
-  KC_GRV, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_TILD, \
-  _______, _______, _______, _______, _______, _______, _______, _______, XXXXXXX, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, \
+  KC_LSFT, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_TILD, \
+  RU_YO, KC_TILDE, _______, _______, _______, KC_QUES, _______, _______, XXXXXXX, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, \
                              _______, _______, _______, _______, _______,  _______, _______, _______\
 ),
 /* RAISE
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |      |      |      |      |      |      |                    |      |      |      |      |      |KC_DEL|
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |   `  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |      |
+ * |   `  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |RU_HA|
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |-------.    ,-------|      | Left | Down |  Up  |Right |      |
+ * |LShift|  F2  |  F3  |  F4  |  F5  |  F6  |-------.    ,-------|      | Left | Down |  Up  |Right |RU_HARD|
  * |------+------+------+------+------+------|   [   |    |    ]  |------+------+------+------+------+------|
  * |  F7  |  F8  |  F9  | F10  | F11  | F12  |-------|    |-------|   +  |   -  |   =  |   [  |   ]  |   \  |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -90,8 +93,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_RAISE] = LAYOUT( \
   _______, _______, _______, _______, _______, _______,                     _______, _______, _______, _______, _______, KC_DEL, \
-  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                        KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______, \
-  KC_F1,  KC_F2,    KC_F3,   KC_F4,   KC_F5,   KC_F6,                       XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, \
+  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                        KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    RU_HA, \
+  KC_LSFT,  KC_F2,    KC_F3,   KC_F4,   KC_F5,   KC_F6,                       XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, RU_HARD, \
   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,   _______, _______,  KC_PLUS, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS, \
                              _______, _______, _______,  _______, _______,  _______, _______, _______ \
 ),
@@ -136,12 +139,41 @@ void matrix_init_user(void) {
 }
 
 //SSD1306 OLED update loop, make sure to enable OLED_DRIVER_ENABLE=yes in rules.mk
-#ifdef OLED_DRIVER_ENABLE
+
+void render_keyboard(void) {
+    static const char PROGMEM font_keyboard[11] = {0xb6, 0xb7, 0xb8, 0xb9, 0xba, 0xd6, 0xd7, 0xd8, 0xd9, 0xda, 0};
+    oled_write_P(font_keyboard, false);
+};
+
+void render_kb_split(void) {
+    static const char PROGMEM font_kb_split[11] = {0xba, 0xbb, 0xbc, 0xbd, 0xbe, 0xda, 0xdb, 0xdc, 0xdd, 0xde, 0};
+    oled_write_P(font_kb_split, false);
+};
+
+// 5x1 Layer indicator
+
+void render_layer(void) {
+    static const char PROGMEM font_layer[4][6] = {
+        {0x85, 0x86, 0x87, 0x88, 0x89, 0},
+        {0xa5, 0xa6, 0xa7, 0xa8, 0xa9, 0},
+        {0xc5, 0xc6, 0xc7, 0xc8, 0xc9, 0},
+        {0x9a, 0x9b, 0x9c, 0x9d, 0x9e, 0},
+    };
+    uint8_t layer = 0;
+    if (layer_state_is(_ADJUST)) {
+        layer = 3;
+    } else if (layer_state_is(_RAISE)) {
+        layer = 2;
+    } else if (layer_state_is(_LOWER)) {
+        layer = 1;
+    }
+    oled_write_P(font_layer[layer], false);
+};
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
   if (!is_keyboard_master())
     return OLED_ROTATION_180;  // flips the display 180 degrees if offhand
-  return rotation;
+  return OLED_ROTATION_270;
 }
 
 // When you add source files to SRC in rules.mk, you can use functions.
@@ -156,20 +188,59 @@ const char *read_host_led_state(void);
 void set_timelog(void);
 const char *read_timelog(void);
 
+void render_mod_ctrl(void) {
+    static const char PROGMEM font_ctrl[3] = {0x93, 0x94, 0};
+    oled_write_P(font_ctrl, false);
+};
+
+void render_mod_alt(void) {
+    static const char PROGMEM font_alt[3] = {0xb3, 0xb4, 0};
+    oled_write_P(font_alt, false);
+};
+
+void render_mod_shift(void) {
+    static const char PROGMEM font_shift[3] = {0xd3, 0xd4, 0};
+    oled_write_P(font_shift, false);
+};
+
+void render_mod_gui(void) {
+    static const char PROGMEM font_gui[3] = {0x95, 0x96, 0};
+    oled_write_P(font_gui, false);
+};
+
+void render_mod_status(void) {
+#ifdef NO_ACTION_ONESHOT
+    uint8_t modifiers = get_mods();
+#else
+    uint8_t modifiers = get_mods() | get_oneshot_mods();
+#endif
+
+    (modifiers & MOD_MASK_CTRL) ? render_mod_ctrl() : oled_write_P(PSTR("  "), false);
+    oled_write_P(PSTR(" "), false);
+    (modifiers & MOD_MASK_SHIFT) ? render_mod_shift() : oled_write_P(PSTR("  "), false);
+
+    (modifiers & MOD_MASK_ALT) ? render_mod_alt() : oled_write_P(PSTR("  "), false);
+    oled_write_P(PSTR(" "), false);
+    (modifiers & MOD_MASK_GUI) ? render_mod_gui() : oled_write_P(PSTR("  "), false);
+}
+
 void oled_task_user(void) {
   if (is_keyboard_master()) {
     // If you want to change the display of OLED, you need to change here
-    oled_write_ln(read_layer_state(), false);
-    oled_write_ln(read_keylog(), false);
-    // oled_write_ln(read_keylog(), false);
-    // oled_write_ln(read_mode_icon(keymap_config.swap_lalt_lgui), false);
-    // oled_write_ln(read_host_led_state(), false);
-    // oled_write_ln(read_timelog(), false);
+    // oled_write_ln(read_layer_state(), false);
+    render_kb_split();
+    oled_write_ln("", false);
+    oled_write_ln("", false);
+    oled_write_ln("", false);
+    render_layer();
+    oled_write_ln("", false);
+    oled_write_ln("", false);
+    oled_write_ln("", false);
+    render_mod_status();
   } else {
     oled_write(read_logo(), false);
   }
 }
-#endif // OLED_DRIVER_ENABLE
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
