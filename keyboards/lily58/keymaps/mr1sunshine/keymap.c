@@ -28,12 +28,15 @@ enum custom_keycodes {
   LOWER,
   RAISE,
   ADJUST,
-  FULLSCREEN,
-  MAXSCREEN,
-  NEXTSCREEN,
+  FLSCRN,
+  MXSCRN,
+  NTSCRN,
   SEARCH,
-  LEFTSCREEN,
-  RIGHTSCREEN,
+  LTSCRN,
+  RTSCRN,
+  DLTROW,
+  RPLACE,
+  VSBACK
 };
 
 
@@ -49,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------| MUTE  |    |KC_CAPS|------+------+------+------+------+------|
  * |LCTRL |   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |  `   |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |RShift| RGUI |
+ *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |DLTROW|RPLACE|
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
@@ -59,33 +62,33 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,   KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS, \
   KC_LSFT, KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                     KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
   KC_LCTRL,  KC_Z,   KC_X,    KC_C,    KC_V,    KC_B, KC_MUTE,  KC_CAPSLOCK,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_GRV, \
-                             KC_LALT, KC_LGUI,LOWER, KC_SPC,   KC_ENT,   RAISE,   KC_RSFT, KC_RGUI \
+                             KC_LALT, KC_LGUI,LOWER, KC_SPC,   KC_ENT,   RAISE,DLTROW,RPLACE \
 ),
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |RU_YO |      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |RU_YO |VSBACK|      |      |      |      |                    |      |      |      |   {  |   }  |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |  F1  |  F2  |  F3  |  F4  |  F5  |SEARCH|                    |  F7  |  F8  |  F9  | F10  | F11  | F12  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |LShift|   !  |   @  |   #  |   $  |   %  |-------.    ,-------|   ^  |LEFTSCREEN|   *  |RIGHTSCREEN|   )  |   -  |
+ * |LShift|   !  |   @  |   #  |   $  |   %  |-------.    ,-------|   ^  |LTSCRN|   *  |RTSCRN|   )  |   -  |
  * |------+------+------+------+------+------|   [   |    |    ]  |------+------+------+------+------+------|
- * |RU_YO|KC_TILDE|NEXTSCREEN|MAXSCREEN|FULLSCREEN|KC_QUES|-------|    |-------|      |   _  |   +  |   {  |   }  |   |  |
+ * |RU_YO|KC_TILDE|NTSCRN|MXSCRN|FLSCRN|KC_QUES|-------|    |-------|      |   _  |   +  |   {  |   }  |   |  |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |BackSP| RGUI |
  *                   `----------------------------'           '------''--------------------'
  */
 [_LOWER] = LAYOUT( \
-  RU_YO, _______, _______, _______, _______, _______,                   _______, _______, _______,_______, _______, _______,\
+  RU_YO, VSBACK, _______, _______, _______, _______,                   _______, _______, _______,KC_LCBR, KC_RCBR, _______,\
   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,SEARCH,                     KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12, \
-  KC_LSFT, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, LEFTSCREEN, KC_ASTR, RIGHTSCREEN, KC_RPRN, KC_TILD, \
-  RU_YO, KC_TILDE,NEXTSCREEN,MAXSCREEN, FULLSCREEN, KC_QUES, _______, _______, XXXXXXX, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, \
+  KC_LSFT, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, LTSCRN, KC_ASTR, RTSCRN, KC_RPRN, KC_TILD, \
+  RU_YO, KC_TILDE,NTSCRN,MXSCRN, FLSCRN, KC_QUES, _______, _______, XXXXXXX, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, \
                              _______, _______, _______, _______, _______,  _______, _______, _______\
 ),
 /* RAISE
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |      |      |      |      |      |                    |      |      |      |      |      |KC_DEL|
+ * |      |      |      |      |      |      |                    |      |      |      |   [  |   ]  |KC_DEL|
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |   `  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |  Up  |   9  |   0  |RU_HA|
+ * |   `  |   1  |   2  |   3  |   4  |   5  |                    |   6  |LTSCRN|  Up  |RTSCRN|   0  |RU_HA|
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |LShift|  F2  |  F3  |  F4  |  F5  |  F6  |-------.    ,-------|      | Left | Down |Right |      |RU_HARD|
  * |------+------+------+------+------+------|   [   |    |    ]  |------+------+------+------+------+------|
@@ -97,8 +100,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_RAISE] = LAYOUT( \
-  _______, _______, _______, _______, _______, _______,                     _______, _______, _______, _______, _______, KC_DEL, \
-  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                        KC_6,    KC_7,    KC_UP,    KC_9,    KC_0,    RU_HA, \
+  _______, _______, _______, _______, _______, _______,                     _______, _______, _______, KC_LBRC, KC_RBRC, KC_DEL, \
+  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                        KC_6,LTSCRN,    KC_UP,RTSCRN,    KC_0,    RU_HA, \
   KC_LSFT,  KC_F2,    KC_F3,   KC_F4,   KC_F5,   KC_F6,                       XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT, _______, RU_HARD, \
   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,   _______, _______,  KC_PLUS, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS, \
                              _______, _______, _______,  _______, _______,  _______, _______, _______ \
@@ -294,19 +297,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         return false;
         break;
-    case FULLSCREEN: {
+    case FLSCRN: {
         if (record->event.pressed) {
             SEND_STRING(SS_DOWN(X_LALT)SS_DOWN(X_LGUI)SS_DOWN(X_LCTRL)SS_TAP(X_F)SS_UP(X_LCTRL)SS_UP(X_LGUI)SS_UP(X_LALT));
         }
         break;
     }
-    case MAXSCREEN: {
+    case MXSCRN: {
         if (record->event.pressed) {
             SEND_STRING(SS_DOWN(X_LALT)SS_DOWN(X_LGUI)SS_DOWN(X_LCTRL)SS_TAP(X_M)SS_UP(X_LCTRL)SS_UP(X_LGUI)SS_UP(X_LALT));
         }
         break;
     }
-    case NEXTSCREEN: {
+    case NTSCRN: {
         if (record->event.pressed) {
             SEND_STRING(SS_DOWN(X_LALT)SS_DOWN(X_LGUI)SS_DOWN(X_LCTRL)SS_TAP(X_N)SS_UP(X_LCTRL)SS_UP(X_LGUI)SS_UP(X_LALT));
         }
@@ -318,17 +321,35 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         break;
     }
-    case LEFTSCREEN: {
+    case LTSCRN: {
         if (record->event.pressed) {
             SEND_STRING(SS_DOWN(X_LCTRL)SS_TAP(X_LEFT)SS_UP(X_LCTRL));
         }
         break;
     }
-    case RIGHTSCREEN: {
+    case RTSCRN: {
         if (record->event.pressed) {
             SEND_STRING(SS_DOWN(X_LCTRL)SS_TAP(X_RIGHT)SS_UP(X_LCTRL));
         }
         break;
+    }
+    case RPLACE: {
+      if (record->event.pressed) {
+          SEND_STRING(SS_DOWN(X_LGUI) SS_DOWN(X_F2) SS_UP(X_F2) SS_UP(X_LGUI));
+      }
+      break;
+    }
+    case DLTROW: {
+      if (record->event.pressed) {
+          SEND_STRING(SS_DOWN(X_LALT) SS_DOWN(X_LSHIFT) SS_DOWN(X_BSPACE) SS_UP(X_BSPACE) SS_UP(X_LSHIFT) SS_UP(X_LALT));
+      }
+      break;
+    }
+    case VSBACK: {
+      if (record->event.pressed) {
+          SEND_STRING(SS_DOWN(X_LCTRL) SS_DOWN(X_MINS) SS_UP(X_MINS) SS_UP(X_LCTRL));
+      }
+      break;
     }
   }
   return true;
