@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MASTER_LEFT
 #define USE_SERIAL_PD2
 #define TAPPING_FORCE_HOLD
-#define TAPPING_TERM 100
+#define TAPPING_TERM 175
 
 // Underglow
 #undef RGBLED_NUM
@@ -32,13 +32,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #define RGBLED_SPLIT {8,8}
   #define RGBLIGHT_ANIMATIONS
   #define RGBLIGHT_SLEEP
-#endif 
+#endif
 
 // Encoder
-#ifdef ENCODER_ENABLE 
+#ifdef ENCODER_ENABLE
   #define ENCODERS_PAD_A { F5 }
   #define ENCODERS_PAD_B { F4 }
-  
+
   // Enable if encoder is on the left side
   // #define ENCODER_DIRECTION_FLIP
 #endif

@@ -4,6 +4,7 @@ ENCODER_ENABLE = yes
 WPM_ENABLE = no
 CONSOLE_ENABLE = no
 EXTRAFLAGS += -flto
+TAP_DANCE_ENABLE = yes
 
 # If you want to change the display of OLED, you need to change here
 SRC +=  ./lib/rgb_state_reader.c \
