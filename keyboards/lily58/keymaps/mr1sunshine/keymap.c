@@ -43,7 +43,7 @@ enum custom_keycodes {
   ALTC,
 };
 
-enum { ESC_CAPS = 0, TABS, DELS };
+enum { ESC_CAPS = 0, DELS };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -54,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * | Tab  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |BackSP|
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |LCTRL |   A  |   S  |   D  |   F  |   G  |-------.    ,-------|   H  |   J  |   K  |   L  |   ;  |  '   |
- * |------+------+------+------+------+------| MUTE  |    |KC_CAPS|------+------+------+------+------+------|
+ * |------+------+------+------+------+------| MUTE  |    |KC_MPLY|------+------+------+------+------+------|
  * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |RShift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |DLTROW|RPLACE|
@@ -63,9 +63,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
  [_QWERTY] = LAYOUT( \
   TD(ESC_CAPS), KC_1, KC_2, KC_3,    KC_4,    KC_5,                                  KC_6,   KC_7,    KC_8,    KC_9,   KC_0,    KC_MINS, \
-  KC_TAB,       KC_Q, KC_W, KC_E,    KC_R,    KC_T,                                  KC_Y,   KC_U,    KC_I,    KC_O,   KC_P,    TD(DELS), \
+  KC_TAB,       KC_Q, KC_W, KC_E,    KC_R,    KC_T,                                  KC_Y,   KC_U,    KC_I,    KC_O,   KC_P,    KC_BSPACE, \
   KC_LCTRL,     KC_A, KC_S, KC_D,    KC_F,    KC_G,                                  KC_H,   KC_J,    KC_K,    KC_L,   KC_SCLN, KC_QUOT, \
-  KC_LSFT,      KC_Z, KC_X, KC_C,    KC_V,    KC_B,  KC_MUTE, KC_CAPS,        KC_N,  KC_M,   KC_COMM, KC_DOT, KC_SLSH, KC_RSFT, \
+  KC_LSFT,      KC_Z, KC_X, KC_C,    KC_V,    KC_B,  KC_MUTE, KC_MPLY,        KC_N,  KC_M,   KC_COMM, KC_DOT, KC_SLSH, TD(DELS), \
                             KC_LALT, KC_LGUI, LOWER, KC_SPC,  RSFT_T(KC_ENT), RAISE, DLTROW, RPLACE \
 ),
 /* LOWER
@@ -74,19 +74,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |  ~   |      |      | HOME | END  |SEARCH|                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      | TABS |FLSCRN|VSBACK|-------.    ,-------|      |      |      |      |      |      |
- * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
+ * |      |      |      |      |FLSCRN|VSBACK|-------.    ,-------|      |      |      |      |      |      |
+ * |------+------+------+------+------+------|       |    |KC_MPRV|------+------+------+------+------+------|
  * |      |      |NTSCRN|MXSCRN|      | ALTC |-------|    |-------|      |      |      |      |      |   |  |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |BackSP| RGUI |
  *                   `----------------------------'           '------''--------------------'
  */
 [_LOWER] = LAYOUT( \
-  KC_GRV,  KC_F1,   KC_F2,    KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,\
-  KC_TILD, _______, TD(TABS), KC_HOME, KC_END,  SEARCH,                    _______, _______, _______, _______, _______, _______, \
-  _______, _______, _______,  _______, FLSCRN,  VSBACK,                    _______, _______, _______, _______, _______, _______, \
-  _______, _______, NTSCRN,   MXSCRN,  _______, ALTC,    _______, _______, _______, _______, _______, _______, _______, KC_PIPE, \
-                              _______, _______, _______, _______, _______, _______, _______, _______\
+  KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,\
+  KC_TILD, _______, _______, KC_HOME, KC_END,  SEARCH,                    _______, _______, _______, _______, _______, _______, \
+  _______, _______, _______, _______, FLSCRN,  VSBACK,                    _______, _______, _______, _______, _______, _______, \
+  _______, _______, NTSCRN,  MXSCRN,  _______, ALTC,    _______, KC_MPRV, _______, _______, _______, _______, _______, KC_PIPE, \
+                             _______, _______, _______, _______, _______, _______, _______, _______\
 ),
 /* RAISE
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -95,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |   [  |   ]  |                    | PGUP |LTSCRN|  Up  |RTSCRN|      |KC_DEL|
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |      |      |   {  |   }  |-------.    ,-------|PGDOWN| Left | Down |Right |      |      |
- * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
+ * |------+------+------+------+------+------|       |    |KC_MNXT|------+------+------+------+------+------|
  * |      |      |      |      |      |      |-------|    |-------|   +  |   =  |      |      |      |   \  |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |BackSP| RGUI |
@@ -106,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______, _______, _______, _______,                   _______,   _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, KC_LBRC, KC_RBRC,                   KC_PGUP,   LTSCRN,  KC_UP,   RTSCRN,  _______, KC_DEL, \
   _______, _______, _______, _______, KC_LCBR, KC_RCBR,                   KC_PGDOWN, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, \
-  _______, _______, _______, _______, _______, _______, _______, _______, KC_PLUS,   KC_EQL,  _______, _______, _______, KC_BSLS, \
+  _______, _______, _______, _______, _______, _______, _______, KC_MNXT, KC_PLUS,   KC_EQL,  _______, _______, _______, KC_BSLS, \
                              _______, _______, _______, _______, _______, _______,   _______, _______ \
 ),
 /* ADJUST
@@ -377,7 +377,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 
 void send_backspaces(qk_tap_dance_state_t *state, void *user_data) {
   if (state->count == 1) {
-    SEND_STRING(SS_TAP(X_BSPACE));
+    SEND_STRING(SS_TAP(X_RSHIFT));
     reset_tap_dance (state);
   } else if (state->count >= 2) {
     SEND_STRING(SS_DOWN(X_LALT) SS_TAP(X_BSPACE) SS_UP(X_LALT));
@@ -387,6 +387,5 @@ void send_backspaces(qk_tap_dance_state_t *state, void *user_data) {
 
 qk_tap_dance_action_t tap_dance_actions[] = {
 [ESC_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_CAPS),
-[TABS] = ACTION_TAP_DANCE_DOUBLE(KC_NEXTTAB, KC_PREVTAB),
 [DELS] = ACTION_TAP_DANCE_FN(send_backspaces)
 };
